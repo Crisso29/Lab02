@@ -32,6 +32,8 @@ scope en el código.
 ![SonarCloud ANTES](../evidencias/sonarcloud-ANTES.png)
 
 ### Issues encontrados
+
+![SonarCloud DESPUÉS](../evidencias/sonarcloud.png)
 | # | Línea | Issue | Severidad | Tipo |
 |---|-------|-------|-----------|------|
 | 1 | L3 | Unexpected var, use let or const instead | High | Code Smell |
