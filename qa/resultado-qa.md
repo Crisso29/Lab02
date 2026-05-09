@@ -12,6 +12,8 @@
 
 ## Resultado ESLint — ANTES de corregir
 
+![ESLint ANTES](../evidencias/eslint-ANTES.png)
+
 ❌ 8 problemas encontrados (4 errores, 4 advertencias)
 
 ```
