@@ -114,7 +114,7 @@ npx @sonar/scan -Dsonar.host.url=http://localhost:9000 \
 
 ![Contenedor SonarQube en Docker](../evidencias/docker-contenedor.png)
 
-![Dashboard SonarQube Local](../evidencias/sonarqube-docker-analisis.png)
+![Dashboard SonarQube Local](../evidencias/sonarqube-analisis.png)
 
 ### Comparación SonarCloud vs SonarQube Docker
 
