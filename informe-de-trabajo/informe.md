@@ -141,7 +141,7 @@ npx @sonar/scan -Dsonar.host.url=http://localhost:9000 \
 
 ## Informe monográfico completo
 
-📄 [Ver documento Word en Google Drive](ENLACE_AQUI)
+📄 [Ver Monografía completa en Google Drive](https://drive.google.com/file/d/18zU9NqiRtaL29YKDXPeAXStQsoe8PDkA/view?usp=sharing)
 
 ---
 
