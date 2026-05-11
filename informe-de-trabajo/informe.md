@@ -13,6 +13,7 @@
 | Módulo revisado | src/products.js |
 | Repositorio | https://github.com/Crisso29/Lab02 |
 | URL SonarCloud | https://sonarcloud.io/summary/overall?id=Crisso29_Lab02 |
+| URL SonarQube Local | http://localhost:9000/dashboard?id=Lab02 |
 
 ---
 
@@ -20,6 +21,7 @@
 
 - ESLint 10.x con reglas: eqeqeq, no-var, no-unused-vars, prefer-const
 - SonarCloud — análisis automático conectado con GitHub
+- SonarQube Community Edition — análisis local con Docker
 - Checklist manual (7 criterios)
 
 ---
@@ -92,12 +94,48 @@
 
 ---
 
+## SonarQube Local con Docker
+
+### Instalación
+
+```bash
+# Levantar SonarQube con Docker
+docker run -d --name sonarqube -p 9000:9000 sonarqube:community
+
+# Ejecutar el análisis
+npx @sonar/scan -Dsonar.host.url=http://localhost:9000 \
+-Dsonar.token=sqp_9577965a57fc2230975255602da25be1c713cb4c \
+-Dsonar.projectKey=Lab02
+```
+
+### Evidencias
+
+![Docker Desktop corriendo](../evidencias/docker-instalado.png)
+
+![Contenedor SonarQube en Docker](../evidencias/docker-contenedor.png)
+
+![Dashboard SonarQube Local](../evidencias/sonarqube-docker-analisis.png)
+
+### Comparación SonarCloud vs SonarQube Docker
+
+| Aspecto | SonarCloud | SonarQube Docker |
+|---------|-----------|-----------------|
+| Instalación | Solo cuenta GitHub | Docker requerido |
+| Costo | Gratis repos públicos | Gratis local |
+| Análisis | Automático en cada push | Manual con comando |
+| Interfaz | Idéntica | Idéntica |
+| Métricas | Las mismas | Las mismas |
+| Ideal para | Laboratorios y proyectos open source | Empresas con código privado |
+
+---
+
 ## Propuesta de mejora
 
 1. Validación en calculateDiscount para precios nulos o negativos ✅
 2. Migrar var → const/let en todo el módulo ✅
 3. Agregar JSDoc a todas las funciones ✅
 4. Crear products.test.js en el siguiente Sprint ⏳
+5. Configurar Husky para bloquear commits con errores ESLint automáticamente
 
 ---
 
@@ -109,10 +147,8 @@
 
 ## Conclusión
 
-ESLint detectó errores de sintaxis y estilo como el uso de `==` en lugar
-de `===` y el uso de `var` en lugar de `const/let`, siendo la primera
-línea de defensa antes del commit. SonarCloud confirmó los mismos code
-smells y proporcionó métricas más completas. Sin embargo, ninguna
-herramienta detectó los defectos de lógica de negocio como precios
-negativos, nulos o indefinidos, los cuales solo fueron detectados
-mediante la revisión manual con checklist.
+El laboratorio demostró que la calidad del software no depende de una sola herramienta, sino de la combinación de tres niveles de análisis complementarios. **ESLint** actuó como primera línea de defensa detectando 8 problemas de sintaxis y estilo antes del commit, siendo inmediato y preciso para errores técnicos. **SonarCloud** proporcionó un análisis más profundo desde la nube, confirmando los code smells y generando métricas históricas de calidad integradas directamente con GitHub. **SonarQube con Docker** demostró ser la alternativa ideal para entornos empresariales con código privado, ofreciendo exactamente las mismas métricas que SonarCloud pero ejecutándose localmente sin depender de internet.
+
+Sin embargo, las tres herramientas automáticas juntas no fueron suficientes para garantizar la calidad completa del módulo. La **revisión manual con checklist** fue indispensable para detectar defectos de lógica de negocio que ningún analizador automático pudo identificar: precios negativos, nulos e indefinidos en los datos, y la ausencia de validación en calculateDiscount que habría generado valores NaN en producción, violando directamente el criterio CA-3 de la historia de usuario HU-021.
+
+Finalmente, el flujo de trabajo con **Git y GitHub** — ramas, Pull Requests, Issues y merge — demostró cómo se organiza la colaboración profesional en un equipo de desarrollo, manteniendo trazabilidad completa desde la detección del defecto hasta su resolución y cierre formal.
